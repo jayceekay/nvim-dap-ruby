@@ -76,7 +76,7 @@ local function setup_ruby_adapter(dap)
 		end
 
 		if config.bundle == "bundle" then
-			args = { "-n", "--open", "--port", config.port, "-c", "--", "bundle", "exec", config.command, script }
+			args = { "--open", "--port", config.port, "-c", "--", "bundle", "exec", config.command, script }
 		else
 			args = { "--open", "--port", config.port, "-c", "--", config.command, script }
 		end
@@ -123,36 +123,6 @@ local function setup_ruby_configuration(dap)
 	dap.configurations.ruby = {
 		{
 			type = "ruby",
-			name = "run rails",
-			bundle = "bundle",
-			request = "attach",
-			command = "rails",
-			script = "s",
-			port = 38698,
-			server = "127.0.0.1",
-			options = {
-				source_filetype = "ruby",
-			},
-			localfs = true,
-			waiting = 1000,
-		},
-		{
-			type = "ruby",
-			name = "debug current file",
-			bundle = "",
-			request = "attach",
-			command = "ruby",
-			script = "${file}",
-			port = 38698,
-			server = "127.0.0.1",
-			options = {
-				source_filetype = "ruby",
-			},
-			localfs = true,
-			waiting = 1000,
-		},
-		{
-			type = "ruby",
 			name = "run rspec current_file",
 			bundle = "bundle",
 			request = "attach",
@@ -189,6 +159,36 @@ local function setup_ruby_configuration(dap)
 			request = "attach",
 			command = "rspec",
 			script = "./spec",
+			port = 38698,
+			server = "127.0.0.1",
+			options = {
+				source_filetype = "ruby",
+			},
+			localfs = true,
+			waiting = 1000,
+		},
+		{
+			type = "ruby",
+			name = "run rails",
+			bundle = "bundle",
+			request = "attach",
+			command = "rails",
+			script = "s",
+			port = 38698,
+			server = "127.0.0.1",
+			options = {
+				source_filetype = "ruby",
+			},
+			localfs = true,
+			waiting = 1000,
+		},
+		{
+			type = "ruby",
+			name = "debug current file",
+			bundle = "",
+			request = "attach",
+			command = "ruby",
+			script = "${file}",
 			port = 38698,
 			server = "127.0.0.1",
 			options = {
